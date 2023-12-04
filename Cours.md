@@ -36,4 +36,34 @@ Voici l'architechture d'un projet .NET console (cf projet), pour en créer une i
 dotnet new console
 ```
 
- 
+ On remarque que le contenu du code source est alors constituée d'une seul ligne dans le fichier Program.cs*
+
+
+ ```csharp
+ Console.WriteLine("Hello, World!");
+ ```
+
+ Si on veut obtenir un programme avec l'ancienne syntaxe, il suffit de taper la commande suivante : 
+
+ ```bash
+dotnet new console --use-program-main
+```
+
+Pour lancer le programme 
+
+```bash
+dotnet run
+```
+
+Pour faire un projet MVC, il suffit de faire la commande : 
+
+```bash
+dotnet new mvc
+```
+
+Le serveur web fournir avec ASP .NET core est Kestrel, qui est un serveur Web cross-platform.
+
+![Alt text](image2.png)
+
+Kestrel va traiter toutes les requetes et fournira les réponses au travers d'un objet de type `HttpContext`.
+

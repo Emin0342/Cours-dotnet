@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console\\console.csproj",
-      "projectName": "console",
-      "projectPath": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console\\console.csproj",
+      "projectUniqueName": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console2\\console2.csproj",
+      "projectName": "console2",
+      "projectPath": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console2\\console2.csproj",
       "packagesPath": "C:\\Users\\emins\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console\\obj\\",
+      "outputPath": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\emins\\AppData\\Roaming\\NuGet\\NuGet.Config"

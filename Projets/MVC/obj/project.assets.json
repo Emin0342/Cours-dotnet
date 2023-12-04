@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console\\console.csproj",
-      "projectName": "console",
-      "projectPath": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console\\console.csproj",
+      "projectUniqueName": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\MVC\\MVC.csproj",
+      "projectName": "MVC",
+      "projectPath": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\MVC\\MVC.csproj",
       "packagesPath": "C:\\Users\\emins\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\console\\obj\\",
+      "outputPath": "C:\\Users\\emins\\Desktop\\Isitech - cours\\SEMAINE 3 - C#\\LUNDI\\Projets\\MVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\emins\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -55,6 +55,9 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
