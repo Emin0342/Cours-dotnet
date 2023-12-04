@@ -1,0 +1,15 @@
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\bin\Debug\net8.0\console2.exe
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\bin\Debug\net8.0\console2.deps.json
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\bin\Debug\net8.0\console2.runtimeconfig.json
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\bin\Debug\net8.0\console2.dll
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\bin\Debug\net8.0\console2.pdb
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\console2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\console2.AssemblyInfoInputs.cache
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\console2.AssemblyInfo.cs
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\console2.csproj.CoreCompileInputs.cache
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\console2.sourcelink.json
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\console2.dll
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\refint\console2.dll
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\console2.pdb
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\console2.genruntimeconfig.cache
+C:\Users\emins\Desktop\Isitech - cours\SEMAINE 3 - C#\LUNDI\Projets\console2\obj\Debug\net8.0\ref\console2.dll
