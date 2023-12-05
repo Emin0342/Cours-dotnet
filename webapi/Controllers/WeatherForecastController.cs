@@ -4,6 +4,7 @@ namespace webapi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+// route de base pour accéder au controller
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]

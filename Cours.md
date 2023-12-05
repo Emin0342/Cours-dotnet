@@ -241,3 +241,38 @@ Les fichiers de configuration
 
 Rest = standard web server
 
+Controllers gere les requete
+
+appdbcontext : fait la liaison entre l'api et la bdd / est le chemin d'acces vers la bdd. 
+
+## Liste des packages nugget pour l'api 
+
+Entity framework
+```shell
+dotnet add package Microsoft.EntityFrameworkCore --version 8.0.0
+```
+
+Sqlite
+```shell
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 8.0.0
+```
+
+Design
+```shell
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.0
+```
+
+
+Etape a suivre pour la config de SQLite avec EF core ; 
+
+- Ajouter le package NuGet Microsoft..... sqlite
+- Ajouter le package NuGet Microsoft..... design
+- Installer les outils de ligne de commande : dotnet tool install --global dotnet-ef
+- Creer une classe qui herite de DbContext
+- Ajouter une propriete de type DbSet<T> pour chaque entite
+- Ajouter une methode OnConfiguration pour configurer la connexion a la base de donnees
+- Trouver un moyen de specifier le bon chemin pour le fichier de la base de donnees 
+- utiliser les commandes de migration pour creer la premiere migration : dotnet ef migrations add InitialCreate
+- analyser le code genere par la migration, d'apres vous a quoi cela va servir ?
+- Utiliser les commandes de migration pour creer la base de données : dotnet ef databse update
+- que s'est il passsé ?
