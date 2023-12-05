@@ -66,6 +66,18 @@ public class BookController : ControllerBase
 
         }
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult> PutBook(int id, [FromBody] Book book)
+    {
+        if (id != book.Id)
+        {
+            return BadRequest();
+        }
+        _context.Entry(book).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
 }
 // TODO PUT : api/Book/[id] creer la route qyu permet de mettre a jour un livre existant
 // TODO DELETE : api/Book/[id] creer la route qui permet de supprimer un livre existant
