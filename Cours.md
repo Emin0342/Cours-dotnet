@@ -232,3 +232,12 @@ Point d'acces de l'app (comme le app.js avec React)
 ### La configuration de l'application 
 
 Les fichiers de configuration 
+
+
+
+### API 
+
+![Alt text](image-1.png)
+
+Rest = standard web server
+
