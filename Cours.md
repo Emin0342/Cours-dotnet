@@ -229,3 +229,6 @@ Une solution .NET est un conteneur pour un ou plusieurs projets .NET. Elle est r
 Point d'acces de l'app (comme le app.js avec React)
 
 
+### La configuration de l'application 
+
+Les fichiers de configuration 
