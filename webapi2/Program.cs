@@ -1,5 +1,7 @@
 
-namespace webapi;
+using newWebAPI.Models;
+
+namespace newWebAPI;
 
 public class Program
 {

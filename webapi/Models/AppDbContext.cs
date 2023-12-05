@@ -14,6 +14,7 @@ namespace webapi;
 
         // Configurer EF8 pour utiliser le non SGBD
 
+        // on va creer une methode qui va configurer EF pour utiliser Sqlite
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // configurer EF pour utiliser Sqlite
