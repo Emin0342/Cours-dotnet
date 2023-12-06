@@ -48,8 +48,6 @@ public class Program
 public class MappingProfile : Profile {
      public MappingProfile() {
          // Add as many of these lines as you need to map your objects
-         CreateMap<Book, BookUpdateDTO>();
-         
-        //  CreateMap<UserDto, User>();
+         CreateMap<Book, BookUpdateDTO>(); // ici on map les champs de la table Book avec les champs du DTO
      }
  }

@@ -20,6 +20,11 @@ EntityFramework 8 :
 ```shell
 dotnet add package Microsoft.EntityFrameworkCore --version 8.0.0
 ```
+Automapper :
+
+```bash
+dotnet dotnet add package AutoMapper --version 12.0.1
+```
 
 Sqlite3
 ```shell
@@ -86,3 +91,4 @@ Afin d'éffectuer une requete PUT il faut clicker sur `PUT` -->  `TRY IT OUT`,  
 # REQUETE DELETE : 
 
 Afin d'éffectuer une requete DELETE il faut clicker sur `DELETE` -->  `TRY IT OUT`,  preciser l'id de la ligne que l'ont veut supprimer puis faire `EXECUTE`
+
