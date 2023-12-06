@@ -276,3 +276,12 @@ Etape a suivre pour la config de SQLite avec EF core ;
 - analyser le code genere par la migration, d'apres vous a quoi cela va servir ?
 - Utiliser les commandes de migration pour creer la base de données : dotnet ef databse update
 - que s'est il passsé ?
+
+
+![Alt text](image-2.png)
+
+Equivalent : 
+    - Route handler : controller
+    - Mongoose : EntityFramework
+    - model : Table
+    - MongoDB : sqlite

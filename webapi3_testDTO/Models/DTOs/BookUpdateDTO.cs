@@ -23,5 +23,17 @@ public class BookUpdateDTO
     [MaxLength(200)]
     public string? Genre { get; set; }
 
+    [Required(ErrorMessage = "Le prix est un champ obligatoire !")]
+    [Range(5, 100, ErrorMessage = "Le prix doit être compris entre 5 et 100 !")]
+    public decimal Price { get; set; }
 
+    [Required(ErrorMessage = "La date de publication est un champ obligatoire !")]
+    [MaxLength(200)]
+    public DateTime PublishDate { get; set; }
+
+    [MaxLength(200)]
+    public string? Description { get; set; }
+
+    [MaxLength(200)]
+    public string? Remarks { get; set; }
 }

@@ -17,6 +17,8 @@ public class Book
     [Key]
     // on a un attribut DatabaseGenerated qui sert a definir que la cle primaire est genere par la base de donnee
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    // on a un attribut Column qui sert a definir le nom du champs dans la table
+    [Column("BookId")]
     // on a un attribut Required qui sert a definir que le champs est obligatoire
     [Required]
     // on a un attribut MaxLength qui sert a definir la taille maximale du champs
@@ -48,7 +50,10 @@ public class Book
 
     public DateTime PublishDate { get; set; }
 
+    [MaxLength(200)]
     public string? Description { get; set; }
+
+    [MaxLength(200)]
 
     public string? Remarks { get; set; }
 }

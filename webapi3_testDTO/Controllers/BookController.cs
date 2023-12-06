@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using newWebAPI.Models;
- using AutoMapper;
 
 namespace newWebAPI.Controllers;
 
@@ -14,11 +13,10 @@ namespace newWebAPI.Controllers;
 public class BookController : ControllerBase 
 {
     private readonly AppDbContext _context; // ici on a une variable qui sert a faire le lien avec la base de donnée
-    private readonly IMapper _mapper;
-    public BookController(AppDbContext context, IMapper mapper) 
+
+    public BookController(AppDbContext context) 
     {
         _context = context;
-        _mapper = mapper;
     }
 
     // le get (le R(read) du CRUD qui sert a afficher TOUTES les donnés)
@@ -52,7 +50,6 @@ public class BookController : ControllerBase
 
     public async Task Post([FromBody]Book book)
     {
-    
         _context.Books.Add(book); // ici demande a l'utilisateur de remplir les champs
         await _context.SaveChangesAsync(); // et on insert le champs
     }
@@ -82,46 +79,5 @@ public class BookController : ControllerBase
         return book; // on retourne le livre supprimer
     }
 
-
-    // get de bookUpdateDTO pour obtenir les données de la table Book avec les champs de bookUpdateDTO
-
-    [HttpGet("bookUpdateDTO/{id}")]
-    public async Task<ActionResult<BookUpdateDTO>> GetBookUpdateDTO(int id) // ici on met en paramètre int id pour que l'utilisateur donne l'id pour -->
-    {
-        var book = await _context.Books.FindAsync(id); // --> avoir toutes les données de cet id la
-
-        if (book == null) // si il n'y a aucun livre
-        {
-            return NotFound(); // on retourne une érreur
-        }
-
-        var bookUpdateDTO = new BookUpdateDTO // on a un objet bookUpdateDTO qui sert a definir les champs de la table Book
-        {
-            Title = book.Title, // on a les champs suivant: Title, Author, Genre
-            Author = book.Author,
-            Genre = book.Genre,
-        };
-
-        return bookUpdateDTO; // on retourne le livre en question
-    }
-
-    // utilisation de automapper pour faire le lien entre book et bookUpdateDTO
-
-    [HttpGet("bookUpdateDTOMAPPER/{id}")]
-    public async Task<ActionResult<BookUpdateDTO>> GetBookUpdateDTO2(int id) // ici on met en paramètre int id pour que l'utilisateur donne l'id pour -->
-    {
-        var book = await _context.Books.FindAsync(id); // --> avoir toutes les données de cet id la
-
-        if (book == null) // si il n'y a aucun livre
-        {
-            return NotFound(); // on retourne une érreur
-        }
-
-        var bookUpdateDTO = new BookUpdateDTO(); // on a un objet bookUpdateDTO qui sert a definir les champs de la table Book
-
-        bookUpdateDTO = _mapper.Map<BookUpdateDTO>(book); // on utilise automapper pour faire le lien entre book et bookUpdateDTO
-
-        return bookUpdateDTO; // on retourne le livre en question
-    }
 
 }
