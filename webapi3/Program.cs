@@ -17,6 +17,7 @@ public class Program
         builder.Services.AddDbContext<AppDbContext>();
         builder.Services.AddControllers();
         Console.WriteLine("Hello World!");
+     
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -41,3 +42,14 @@ public class Program
         app.Run();
     }
 }
+
+
+
+public class MappingProfile : Profile {
+     public MappingProfile() {
+         // Add as many of these lines as you need to map your objects
+         CreateMap<Book, BookUpdateDTO>();
+         
+        //  CreateMap<UserDto, User>();
+     }
+ }
