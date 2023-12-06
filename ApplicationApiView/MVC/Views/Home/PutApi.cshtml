@@ -1,0 +1,75 @@
+@{
+    ViewData["Title"] = "Put";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<!-- GetApi.cshtml -->
+
+<button id="getDataButton">Inserer les données</button>
+<div id="dataContainer"></div>
+
+<script>
+    document.getElementById("getDataButton").addEventListener("click", function () {
+        fetchData();
+    });
+
+    function fetchData() {
+        fetch("http://localhost:5123/api/Book")  // Assurez-vous de mettre le bon chemin d'URL pour votre API
+            .then(response => response.json())
+            .then(data => displayData(data))
+            .catch(error => console.error('Erreur lors de la récupération des données:', error));
+    }
+
+    function displayData(data) {
+        var dataContainer = document.getElementById("dataContainer");
+        dataContainer.innerHTML = "<h3>Données récupérées:</h3>";
+
+        // Créer un formulaire pour insérer les données
+        var form = document.createElement("form");
+
+        // Champs d'entrée pour chaque champ de données
+        for (var prop in data[0]) {
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = prop;
+            input.placeholder = prop;
+            form.appendChild(input);
+        }
+
+        // Bouton "Insérer"
+        var insertButton = document.createElement("button");
+        insertButton.innerHTML = "Insérer";
+        insertButton.addEventListener("click", function () {
+            insertData(data);
+        });
+        form.appendChild(insertButton);
+
+        dataContainer.appendChild(form);
+    }
+
+    function insertData(data) {
+        var formData = {};
+        var form = document.querySelector("form");
+
+        // Récupérer les valeurs des champs d'entrée
+        for (var i = 0; i < form.elements.length; i++) {
+            var element = form.elements[i];
+            if (element.type === "text") {
+                formData[element.name] = element.value;
+            }
+        }
+
+        // Envoyer les données à l'API
+        fetch("http://localhost:5123/api/Book", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => console.log("Données insérées:", data))
+            .catch(error => console.error('Erreur lors de l\'insertion des données:', error));
+    }
+</script>
