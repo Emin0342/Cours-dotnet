@@ -23,3 +23,8 @@ Les fonctionnalités suivantes doivent être implementees, elles sont calques su
 - Ecrire un test unitaire (optionnel) 
 
 - Implémentez les bonnes pratiques et les fonctionnalites .NET Core vues en cours (cf. Cours.md)
+
+
+- validation de model avec ModelState et utilisation de DTOs (data transfert object) avec annotations 
+- packet nuget AutoMapper  
+- Repository pattern

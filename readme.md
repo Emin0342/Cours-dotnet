@@ -10,7 +10,7 @@ Elle permet la gestion d'une bibliothèque de livre
 
 - Premierement il faut clonner le depot 
 ```bash
-git clone ...
+git clone https://github.com/Emin0342/Cours-dotnet.git
 ```
 
 - Ensuite il faut telecharger tous les packages nécéssaire a son bon fonctionnement :  
@@ -84,3 +84,5 @@ Afin d'éffectuer une requete POST il faut clicker sur `POST` -->  `TRY IT OUT` 
 Afin d'éffectuer une requete PUT il faut clicker sur `PUT` -->  `TRY IT OUT`,  preciser l'id de la ligne que l'ont veut modifier et modifier les champs juste en dessous puis faire `EXECUTE`
 
 # REQUETE DELETE : 
+
+Afin d'éffectuer une requete DELETE il faut clicker sur `DELETE` -->  `TRY IT OUT`,  preciser l'id de la ligne que l'ont veut supprimer puis faire `EXECUTE`

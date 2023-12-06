@@ -5,25 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-// Ce fichier est un model qui sert a definir les champs de la table Book
-// un model est un fichier qui sert a definir les champs d'une table
-// on a les champs suivant: Id, Title, Author, Genre, Price, PublishDate, Description, Remarks
-// le ? sert a dire que le champs peut etre null
+// Ce fichier DTO sert a definir les champs de la table Book
+// un DTO est un fichier qui sert a definir les champs d'une table
 
-public class Book
+public class BookUpdateDTO
 {
 
-    // on a un attribut Key qui sert a definir la cle primaire de la table
-    [Key]
-    // on a un attribut DatabaseGenerated qui sert a definir que la cle primaire est genere par la base de donnee
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    // on a un attribut Column qui sert a definir le nom du champs dans la table
-    [Column("BookId")]
-    // on a un attribut Required qui sert a definir que le champs est obligatoire
-    [Required]
-    // on a un attribut MaxLength qui sert a definir la taille maximale du champs
-    [MaxLength(200)]
-    public int Id { get; set; }
 
     [Required (ErrorMessage = "Le titre est un champs obligatoire !")]
     [MaxLength(200)]
