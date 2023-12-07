@@ -1,55 +1,39 @@
 @{
-    ViewData["Title"] = "Get";
+    ViewData["Title"] = "Post";
 }
 <h1>@ViewData["Title"]</h1>
 
-
-<!-- GetApi.cshtml -->
-
-<button id="getDataButton">Obtenir les données</button>
-<div id="dataContainer"></div>
+<button id="PostDataButton">Envoyer</button>
 
 <script>
-    document.getElementById("getDataButton").addEventListener("click", function () {
-        fetchData();
+    document.getElementById("PostDataButton").addEventListener("click", function() {
+        var book = {
+            "Title": "Titre du livre",
+            "Author": "Auteur du livre",
+            "Genre": "Genre du livre",
+            "Price": 9.99,
+            "PublishDate": "2022-01-01",
+            "Description": "Description du livre",
+            "Remarks": "Remarques sur le livre"
+        };
+
+        fetch("http://localhost:5123/api/Book", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(book)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Traiter la réponse de la requête POST ici
+        })
+        .catch(error => {
+            console.error(error);
+            // Gérer les erreurs de la requête POST ici
+        });
     });
-
-    function fetchData() {
-        fetch("http://localhost:5123/api/Book")  // Assurez-vous de mettre le bon chemin d'URL pour votre API
-            .then(response => response.json())
-            .then(data => displayData(data))
-            .catch(error => console.error('Erreur lors de la récupération des données:', error));
-    }
-
-    function displayData(data) {
-        var dataContainer = document.getElementById("dataContainer");
-        dataContainer.innerHTML = "<h3>Données récupérées:</h3>";
-
-        // Créer un tableau et ajouter les données
-        var table = document.createElement("table");
-        table.border = "1";
-        table.style.borderCollapse = "collapse";
-
-        // En-têtes du tableau
-        var headerRow = table.insertRow(0);
-        for (var prop in data[0]) {
-            var cell = headerRow.insertCell(-1);
-            cell.innerHTML = "<b>" + prop + "</b>";
-            cell.style.border = "1px solid black";
-            cell.style.padding = "8px";
-        }
-
-        // Données du tableau
-        for (var i = 0; i < data.length; i++) {
-            var row = table.insertRow(-1);
-            for (var prop in data[i]) {
-                var cell = row.insertCell(-1);
-                cell.innerHTML = data[i][prop];
-                cell.style.border = "1px solid black";
-                cell.style.padding = "8px";
-            }
-        }
-
-        dataContainer.appendChild(table);
-    }
 </script>
+
+

@@ -6,70 +6,55 @@
 
 <!-- GetApi.cshtml -->
 
-<button id="getDataButton">Inserer les données</button>
+@{
+    ViewData["Title"] = "Put";
+}
+<h1>@ViewData["Title"]</h1>
+
+<!-- Champs d'entrée pour les données -->
+<input type="text" id="inputId" placeholder="ID">
+<input type="text" id="inputTitle" placeholder="Titre">
+<input type="text" id="inputAuthor" placeholder="Auteur">
+<input type="text" id="inputGenre" placeholder="Genre">
+<input type="text" id="inputPrice" placeholder="Prix">
+<input type="text" id="inputPublishDate" placeholder="Date de publication">
+<input type="text" id="inputDescription" placeholder="Description">
+<input type="text" id="inputRemarks" placeholder="Remarques">
+<!-- Ajoutez d'autres champs d'entrée selon vos besoins -->
+
+<button id="putDataButton">Insérer les données</button>
 <div id="dataContainer"></div>
 
 <script>
-    document.getElementById("getDataButton").addEventListener("click", function () {
-        fetchData();
+    document.getElementById("putDataButton").addEventListener("click", function () {
+        sendData();
     });
 
-    function fetchData() {
-        fetch("http://localhost:5123/api/Book")  // Assurez-vous de mettre le bon chemin d'URL pour votre API
-            .then(response => response.json())
-            .then(data => displayData(data))
-            .catch(error => console.error('Erreur lors de la récupération des données:', error));
-    }
+    function sendData() {
+        var data = {
+            id: document.getElementById("inputId").value,
+            tittle: document.getElementById("inputTitle").value,
+            author: document.getElementById("inputAuthor").value,
+            genre: document.getElementById("inputGenre").value,
+            price: document.getElementById("inputPrice").value,
+            publishDate: document.getElementById("inputPublishDate").value,
+            description: document.getElementById("inputDescription").value,
+            remarks: document.getElementById("inputRemarks").value
+            // Ajoutez d'autres champs selon vos besoins
+        };
 
-    function displayData(data) {
-        var dataContainer = document.getElementById("dataContainer");
-        dataContainer.innerHTML = "<h3>Données récupérées:</h3>";
-
-        // Créer un formulaire pour insérer les données
-        var form = document.createElement("form");
-
-        // Champs d'entrée pour chaque champ de données
-        for (var prop in data[0]) {
-            var input = document.createElement("input");
-            input.type = "text";
-            input.name = prop;
-            input.placeholder = prop;
-            form.appendChild(input);
-        }
-
-        // Bouton "Insérer"
-        var insertButton = document.createElement("button");
-        insertButton.innerHTML = "Insérer";
-        insertButton.addEventListener("click", function () {
-            insertData(data);
-        });
-        form.appendChild(insertButton);
-
-        dataContainer.appendChild(form);
-    }
-
-    function insertData(data) {
-        var formData = {};
-        var form = document.querySelector("form");
-
-        // Récupérer les valeurs des champs d'entrée
-        for (var i = 0; i < form.elements.length; i++) {
-            var element = form.elements[i];
-            if (element.type === "text") {
-                formData[element.name] = element.value;
-            }
-        }
-
-        // Envoyer les données à l'API
         fetch("http://localhost:5123/api/Book", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(data)
         })
-            .then(response => response.json())
-            .then(data => console.log("Données insérées:", data))
-            .catch(error => console.error('Erreur lors de l\'insertion des données:', error));
+        .then(response => response.json())
+        .then(result => {
+            // Traitez la réponse de l'API ici
+            console.log(result);
+        })
+        .catch(error => console.error('Erreur lors de la requête PUT:', error));
     }
 </script>

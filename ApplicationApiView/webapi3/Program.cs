@@ -23,9 +23,7 @@ public class Program
         options.AddPolicy(name: MyAllowSpecificOrigins,
                         policy =>
                         {
-                            policy.WithOrigins("http://example.com",
-                                                "http://www.contoso.com",
-                                                "https://localhost:5001");
+                            policy.AllowAnyOrigin();
                         });
     });
 
@@ -58,9 +56,8 @@ public class Program
 
 
 
-public class MappingProfile : Profile {
-     public MappingProfile() {
-         // Add as many of these lines as you need to map your objects
+public class MappingProfile : Profile { // on crée une classe MappingProfile qui hérite de Profile
+     public MappingProfile() { // on crée un constructeur
          CreateMap<Book, BookUpdateDTO>(); // ici on map les champs de la table Book avec les champs du DTO
      }
  }

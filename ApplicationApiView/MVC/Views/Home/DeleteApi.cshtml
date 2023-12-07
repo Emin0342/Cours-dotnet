@@ -1,55 +1,8 @@
 @{
-    ViewData["Title"] = "Get";
+    ViewData["Title"] = "Delete";
 }
 <h1>@ViewData["Title"]</h1>
 
 
-<!-- GetApi.cshtml -->
+<!-- DeleteApi.cshtml -->
 
-<button id="getDataButton">Obtenir les données</button>
-<div id="dataContainer"></div>
-
-<script>
-    document.getElementById("getDataButton").addEventListener("click", function () {
-        fetchData();
-    });
-
-    function fetchData() {
-        fetch("http://localhost:5123/api/Book")  // Assurez-vous de mettre le bon chemin d'URL pour votre API
-            .then(response => response.json())
-            .then(data => displayData(data))
-            .catch(error => console.error('Erreur lors de la récupération des données:', error));
-    }
-
-    function displayData(data) {
-        var dataContainer = document.getElementById("dataContainer");
-        dataContainer.innerHTML = "<h3>Données récupérées:</h3>";
-
-        // Créer un tableau et ajouter les données
-        var table = document.createElement("table");
-        table.border = "1";
-        table.style.borderCollapse = "collapse";
-
-        // En-têtes du tableau
-        var headerRow = table.insertRow(0);
-        for (var prop in data[0]) {
-            var cell = headerRow.insertCell(-1);
-            cell.innerHTML = "<b>" + prop + "</b>";
-            cell.style.border = "1px solid black";
-            cell.style.padding = "8px";
-        }
-
-        // Données du tableau
-        for (var i = 0; i < data.length; i++) {
-            var row = table.insertRow(-1);
-            for (var prop in data[i]) {
-                var cell = row.insertCell(-1);
-                cell.innerHTML = data[i][prop];
-                cell.style.border = "1px solid black";
-                cell.style.padding = "8px";
-            }
-        }
-
-        dataContainer.appendChild(table);
-    }
-</script>

@@ -50,6 +50,7 @@ public class BookController : ControllerBase
         return book; // sinnon on retourne le livre en question
     }
 
+    [EnableCors("_myAllowSpecificOrigins")]
     [HttpPost] // le post (le c(create) du CRUD qui sert a inserere un nouveaux champ 
 
     public async Task Post([FromBody]Book book)
