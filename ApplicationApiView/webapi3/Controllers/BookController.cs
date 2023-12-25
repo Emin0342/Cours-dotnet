@@ -15,7 +15,7 @@ namespace newWebAPI.Controllers;
 public class BookController : ControllerBase 
 {
     private readonly AppDbContext _context; // ici on a une variable qui sert a faire le lien avec la base de donnée
-    private readonly IMapper _mapper;
+    private readonly IMapper _mapper; // ici on a une variable qui sert a faire le lien avec automapper
     public BookController(AppDbContext context, IMapper mapper) 
     {
         _context = context;
@@ -23,10 +23,10 @@ public class BookController : ControllerBase
     }
 
     // le get (le R(read) du CRUD qui sert a afficher TOUTES les donnés)
-    [EnableCors("_myAllowSpecificOrigins")]
+    [EnableCors("_myAllowSpecificOrigins")] // ici on a un attribut qui sert a definir les autorisations de l'api 
     [HttpGet] 
     [ProducesResponseType(201, Type = typeof(Book))] // ici on definit le type de donné que l'on veut
-    [ProducesResponseType(400)]
+    [ProducesResponseType(400)] 
     
     public async Task<IActionResult> GetBooks()
     {
@@ -49,30 +49,30 @@ public class BookController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetBook(int id)
 {
-    var book = await _context.Books.Include(b => b.Color).FirstOrDefaultAsync(b => b.Id == id);
+    var book = await _context.Books.Include(b => b.Color).FirstOrDefaultAsync(b => b.Id == id); // ici on a une variable qui sert a recuperer toutes les données de la table Book selon l'id
 
-    if (book == null)
+    if (book == null) // si il n'y a aucun livre
     {
-        return NotFound();
+        return NotFound(); // on retourne une érreur
     }
 
-    var bookNewDTO = _mapper.Map<BookNewDTO>(book);
+    var bookNewDTO = _mapper.Map<BookNewDTO>(book); // on utilise automapper pour faire le lien entre book et bookNewDTO
 
-    return Ok(bookNewDTO);
+    return Ok(bookNewDTO); // sinon on retourne tous les livres
 
     }
 
     [EnableCors("_myAllowSpecificOrigins")]
     [HttpPost] // le post (le c(create) du CRUD qui sert a inserere un nouveaux champ 
 
-    public async Task<ActionResult<Book>> PostBook(BookColorPostDTO bookColorPostDto)
+    public async Task<ActionResult<Book>> PostBook(BookColorPostDTO bookColorPostDto) // ici on a en parametre BookColorPostDTO bookColorPostDto pour que l'utilisateur indique les champs a inserer
     {
-        var book = _mapper.Map<Book>(bookColorPostDto);
+        var book = _mapper.Map<Book>(bookColorPostDto); // on utilise automapper pour faire le lien entre book et bookColorPostDto
 
-        _context.Books.Add(book);
-        await _context.SaveChangesAsync();
+        _context.Books.Add(book); // on ajoute le livre
+        await _context.SaveChangesAsync(); // et on met a jour si sa marche 
 
-        return CreatedAtAction("GetBook", new { id = book.Id }, book);
+        return CreatedAtAction("GetBook", new { id = book.Id }, book); // on retourne le livre inserer
     }
   
 
@@ -145,12 +145,12 @@ public class BookController : ControllerBase
 
     // get de bookColorDTO pour obtenir les données de la table Book avec les champs de bookColorDTO
 
-    [HttpGet("bookColorDTO/{id}")]
-    public async Task<ActionResult<BookColorDTO>> GetBookColorDTO(int id)
+    [HttpGet("BookAndColor/{id}")] 
+    public async Task<ActionResult<BookColorDTO>> GetBookColorDTO(int id) // ici on met en paramètre int id pour que l'utilisateur donne l'id pour -->
     {
-        var book = await _context.Books
+        var book = await _context.Books // --> avoir toutes les données de cet id la
             .Include(b => b.Color) // Chargement rapide de la propriété Color
-            .FirstOrDefaultAsync(b => b.Id == id); // on a un attribut Id dans le model book
+            .FirstOrDefaultAsync(b => b.Id == id);  // on demande de trouver le livre selon l'id
 
         if (book == null) // si il n'y a aucun livre
         {
@@ -167,7 +167,7 @@ public class BookController : ControllerBase
 
     // get qui retourne tous les livres avec la colorId qui est en parametre
 
-    [HttpGet("bookColorDTO2/{colorId}")]
+    [HttpGet("AllBookByColor/{colorId}")]
 
     public async Task<IEnumerable<BookColorDTO>> GetBookColorDTO2(int colorId)
     {

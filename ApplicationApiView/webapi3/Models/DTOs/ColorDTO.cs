@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 // un DTO est un fichier qui sert a definir les champs d'une table
 
 
+
 public class ColorDTO
 {
     public int ColorId { get; set; }

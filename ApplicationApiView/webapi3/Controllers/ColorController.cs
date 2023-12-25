@@ -16,7 +16,7 @@ namespace newWebAPI.Controllers;
 public class ColorController : ControllerBase 
 {
     private readonly AppDbContext _context; // ici on a une variable qui sert a faire le lien avec la base de donnée
-    private readonly IMapper _mapper;
+    private readonly IMapper _mapper; // ici on a une variable qui sert a faire le lien avec automapper
     public ColorController(AppDbContext context, IMapper mapper) 
     {
         _context = context;
@@ -33,4 +33,17 @@ public class ColorController : ControllerBase
         var colors = await _context.Color.ToListAsync();
         return _mapper.Map<List<ColorDTO>>(colors); 
     }
+
+    // le post (le C(create) du CRUD qui sert a ajouter des données)
+    [HttpPost] 
+
+    public async Task<IActionResult> PostColor(ColorDTO colorDTO) // ici on a une variable qui sert a recuperer toutes les données de la table Book
+    {
+        var color = _mapper.Map<Color>(colorDTO); // on utilise automapper pour faire le lien entre book et bookNewDTO
+        _context.Color.Add(color); // on ajoute les données dans la table Book
+        await _context.SaveChangesAsync(); // on sauvegarde les données dans la base de donnée
+        return Ok(color); // on retourne les données
+    }
+
+
 }

@@ -63,13 +63,15 @@ public class MappingProfile : Profile { // on crée une classe MappingProfile qu
         CreateMap<Color, BookColorDTO>(); // ici on map les champs de la table Book avec les champs du DTO
         CreateMap<Book, BookColorDTO>() // ici on map les champs de la table Book avec les champs du DTO
             .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color.color)); // ceci est une fonction qui sert a faire le lien entre les deux tables
-        CreateMap<Color, ColorDTO>();
-        CreateMap<Book, BookNewDTO>()
-            .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color != null ? src.Color.color : null));
-        CreateMap<BookNewDTO, Book>();
+        CreateMap<Color, ColorDTO>(); // ici on map les champs de la table Book avec les champs du DTO
+        CreateMap<Book, BookNewDTO>() // ici on map les champs de la table Book avec les champs du DTO
+            .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color != null ? src.Color.color : null)); // ceci est une fonction qui sert a faire le lien entre les deux tables
+        CreateMap<BookNewDTO, Book>(); // ici on map les champs de la table Book avec les champs du DTO
 
-        CreateMap<Book, BookColorPostDTO>();
-        CreateMap<BookColorPostDTO, Book>();
+        CreateMap<Book, BookColorPostDTO>(); 
+        CreateMap<BookColorPostDTO, Book>(); 
+        CreateMap<ColorDTO, Color>(); 
+
 
         
     }

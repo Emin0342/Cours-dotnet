@@ -8,6 +8,8 @@ namespace newWebAPI.Models
 
     // Ce fichier DTO sert a definir les champs de la table Book
     // un DTO est un fichier qui sert a definir les champs d'une table
+
+    // dans ce cas de figure ce fichier dto sert a definir les champs de la table Book avec en plus le champ Color
     public class BookNewDTO
     {
         [Required(ErrorMessage = "Le titre est un champ obligatoire !")]

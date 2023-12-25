@@ -285,3 +285,22 @@ Equivalent :
     - Mongoose : EntityFramework
     - model : Table
     - MongoDB : sqlite
+
+
+## API REST
+
+La différence entre une API et une API REST est que l'API REST est une API qui respecte les contraintes de REST.
+
+Les contraintes de REST sont les suivantes :
+
+- Client-Server : le client et le serveur sont séparés et indépendants
+
+- Stateless : le serveur ne garde pas l'état de la session du client
+
+- Cache : le serveur doit pouvoir indiquer au client s'il peut mettre en cache les données
+
+- Uniform Interface : l'interface doit être uniforme pour que le client puisse accéder aux ressources
+
+- Layered System : le client ne doit pas savoir si le serveur est en relation directe avec la ressource ou s'il passe par un intermédiaire
+
+- Code on demand : le serveur peut envoyer du code au client pour étendre ses fonctionnalités

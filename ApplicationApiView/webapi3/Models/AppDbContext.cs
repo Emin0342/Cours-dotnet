@@ -14,13 +14,13 @@ namespace newWebAPI.Models
             optionsBuilder.UseSqlite($"Filename={dbPath}");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder) // permet de creer la base de donnees
         {
-            modelBuilder.Entity<Color>().HasData(
-                new Color
+            modelBuilder.Entity<Color>().HasData( 
+                new Color // on cree une nouvelle entite Color
                 {
-                    colorId = 1,
-                    color = "red"
+                    colorId = 1, // on lui donne un id
+                    color = "red" // on lui donne un nom
                 },
                 new Color
                 {
@@ -34,16 +34,16 @@ namespace newWebAPI.Models
                 });
 
             modelBuilder.Entity<Book>().HasData(
-                new Book
+                new Book // on cree une nouvelle entite Book
                 {
-                    Id = 1,
-                    Title = "Professional C# 6 and .NET Core 1.0",
-                    Author = "Christian Nagel",
-                    Description = "A true masterclass in C# and .NET programming",
-                    Genre = "Software",
-                    Price = 50,
-                    PublishDate = new DateTime(2016, 05, 09),
-                    colorId = 1
+                    Id = 1, // on lui donne un id
+                    Title = "Professional C# 6 and .NET Core 1.0", // on lui donne un titre
+                    Author = "Christian Nagel", // on lui donne un auteur
+                    Description = "A true masterclass in C# and .NET programming", // on lui donne une description
+                    Genre = "Software", // on lui donne un genre
+                    Price = 50, // on lui donne un prix
+                    PublishDate = new DateTime(2016, 05, 09), // on lui donne une date de publication
+                    colorId = 1 // on lui donne un id de couleur (ici id fait reference a l'id de la table Color)
 
                 },
                 new Book
@@ -102,13 +102,14 @@ namespace newWebAPI.Models
                     colorId = 3
                 });
 
-            modelBuilder.Entity<Book>()
-            .HasOne(b => b.Color)
-            .WithMany(c => c.Books)
-            .HasForeignKey(b => b.colorId); 
+            modelBuilder.Entity<Book>() // on cree une nouvelle entite Book
+            .HasOne(b => b.Color) // on lui dit qu'il a une couleur
+            .WithMany(c => c.Books) // on lui dit qu'il a plusieurs livres
+            .HasForeignKey(b => b.colorId);  // on lui dit qu'il a une cle etrangere qui est l'id de la couleur
         }
 
-        public DbSet<Book> Books { get; set; } = default!;
-        public DbSet<Color> Color { get; set; } = default!;
+        public DbSet<Book> Books { get; set; } = default!; // on cree un dbset qui sert a definir la table Book
+        public DbSet<Color> Color { get; set; } = default!; // on cree un dbset qui sert a definir la table Color 
+        // un dbset est un fichier qui sert a definir une table de la base de donnee
     }
 }

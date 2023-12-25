@@ -8,6 +8,8 @@ namespace newWebAPI.Models
 
     // Ce fichier DTO sert a definir les champs de la table Book
     // un DTO est un fichier qui sert a definir les champs d'une table
+
+    // dans ce cas de figure ce DTO ne va servir qu'a definir les champs de la table Book
     public class BookColorPostDTO
     {
     public string Title { get; set; }
