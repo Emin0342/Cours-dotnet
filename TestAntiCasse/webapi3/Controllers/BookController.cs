@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using newWebAPI.Models;
  using AutoMapper;
 using Microsoft.AspNetCore.Cors;
+using BooksAPI.Models;
+
 
 namespace newWebAPI.Controllers;
 
@@ -55,9 +57,9 @@ public class BookController : ControllerBase
 
     public async Task Post([FromBody]Book book)
     {
+        _context.Books.Add(book); // on demande d'ajouter un nouveau livre
+        await _context.SaveChangesAsync(); // et on met a jour si sa marche
     
-        _context.Books.Add(book); // ici demande a l'utilisateur de remplir les champs
-        await _context.SaveChangesAsync(); // et on insert le champs
     }
 
     [HttpPut("{id}")] // le put (le U(update) du CRUD qui sert a mettre a jour un champ deja existant
@@ -100,8 +102,7 @@ public class BookController : ControllerBase
 
         var bookUpdateDTO = new BookUpdateDTO // on a un objet bookUpdateDTO qui sert a definir les champs de la table Book
         {
-            Title = book.Title, // on a les champs suivant: Title, Author, Genre
-            Author = book.Author,
+            Title = book.Title, // on a les champs suivant: Title, Genre
             Genre = book.Genre,
         };
 
@@ -125,51 +126,6 @@ public class BookController : ControllerBase
         bookUpdateDTO = _mapper.Map<BookUpdateDTO>(book); // on utilise automapper pour faire le lien entre book et bookUpdateDTO
 
         return bookUpdateDTO; // on retourne le livre en question
-    }
-
-    // get de bookColorDTO pour obtenir les données de la table Book avec les champs de bookColorDTO
-
-    [HttpGet("bookColorDTO/{id}")]
-    public async Task<ActionResult<BookColorDTO>> GetBookColorDTO(int id)
-    {
-        var book = await _context.Books
-            .Include(b => b.Color) // Chargement rapide de la propriété Color
-            .FirstOrDefaultAsync(b => b.Id == id); // on a un attribut Id dans le model book
-
-        if (book == null) // si il n'y a aucun livre
-        {
-            return NotFound(); // on retourne une érreur
-        }
- 
-        var bookColorDTO = new BookColorDTO(); // on a un objet bookColorDTO qui sert a definir les champs de la table Book
-        
-        bookColorDTO = _mapper.Map<BookColorDTO>(book); // on utilise automapper pour faire le lien entre book et bookColorDTO
-        
-
-        return bookColorDTO; // on retourne le livre en question
-    }
-
-    // get qui retourne tous les livres avec la colorId qui est en parametre
-
-    [HttpGet("bookColorDTO2/{colorId}")]
-
-    public async Task<IEnumerable<BookColorDTO>> GetBookColorDTO2(int colorId)
-    {
-        var books = await _context.Books
-            .Include(b => b.Color) // Chargement rapide de la propriété Color
-            .Where(b => b.colorId == colorId) // on a un attribut colorId dans le model book
-            .ToListAsync(); // on retourne tous les livres avec la colorId qui est en parametre
-
-        var bookColorDTOs = new List<BookColorDTO>(); // on a un objet bookColorDTO qui sert a definir les champs de la table Book
-
-        foreach (var book in books) // on parcours tous les livres
-        {
-            var bookColorDTO = new BookColorDTO(); // on a un objet bookColorDTO qui sert a definir les champs de la table Book 
-            bookColorDTO = _mapper.Map<BookColorDTO>(book); // on utilise automapper pour faire le lien entre book et bookColorDTO
-            bookColorDTOs.Add(bookColorDTO); // on ajoute les livres dans la liste
-        }
-
-        return bookColorDTOs; // on retourne la liste de livres
     }
 
 }

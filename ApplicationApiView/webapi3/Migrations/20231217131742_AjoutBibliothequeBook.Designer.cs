@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using newWebAPI.Models;
 
@@ -10,12 +11,83 @@ using newWebAPI.Models;
 namespace newWebAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231217131742_AjoutBibliothequeBook")]
+    partial class AjoutBibliothequeBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+
+            modelBuilder.Entity("newWebAPI.Models.Bibliotheque", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Adresse")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bibliotheque");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Adresse = "Paris",
+                            Nom = "Bibliotheque de Paris"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Adresse = "Lyon",
+                            Nom = "Bibliotheque de Lyon"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Adresse = "Marseille",
+                            Nom = "Bibliotheque de Marseille"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Adresse = "Bordeaux",
+                            Nom = "Bibliotheque de Bordeaux"
+                        });
+                });
+
+            modelBuilder.Entity("newWebAPI.Models.BibliothequeBook", b =>
+                {
+                    b.Property<int>("BibliothequeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BibliothequeId1")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("BibliothequeId");
+
+                    b.HasIndex("BibliothequeId1");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BibliothequeBook");
+                });
 
             modelBuilder.Entity("newWebAPI.Models.Book", b =>
                 {
@@ -53,12 +125,7 @@ namespace newWebAPI.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("colorId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("colorId");
 
                     b.ToTable("Books");
 
@@ -71,8 +138,7 @@ namespace newWebAPI.Migrations
                             Genre = "Software",
                             Price = 50m,
                             PublishDate = new DateTime(2016, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Professional C# 6 and .NET Core 1.0",
-                            colorId = 1
+                            Title = "Professional C# 6 and .NET Core 1.0"
                         },
                         new
                         {
@@ -82,8 +148,7 @@ namespace newWebAPI.Migrations
                             Genre = "Software",
                             Price = 50m,
                             PublishDate = new DateTime(2018, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Professional C# 7 and .NET Core 2.0",
-                            colorId = 2
+                            Title = "Professional C# 7 and .NET Core 2.0"
                         },
                         new
                         {
@@ -93,8 +158,7 @@ namespace newWebAPI.Migrations
                             Genre = "Software",
                             Price = 50m,
                             PublishDate = new DateTime(2019, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Professional C# 8 and .NET Core 3.0",
-                            colorId = 3
+                            Title = "Professional C# 8 and .NET Core 3.0"
                         },
                         new
                         {
@@ -104,8 +168,7 @@ namespace newWebAPI.Migrations
                             Genre = "Software",
                             Price = 50m,
                             PublishDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Professional C# 9 and .NET 5",
-                            colorId = 1
+                            Title = "Professional C# 9 and .NET 5"
                         },
                         new
                         {
@@ -115,8 +178,7 @@ namespace newWebAPI.Migrations
                             Genre = "Software",
                             Price = 45m,
                             PublishDate = new DateTime(2020, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Beginning Visual C# 2019",
-                            colorId = 2
+                            Title = "Beginning Visual C# 2019"
                         },
                         new
                         {
@@ -126,57 +188,37 @@ namespace newWebAPI.Migrations
                             Genre = "Software",
                             Price = 50m,
                             PublishDate = new DateTime(2017, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Pro C# 7",
-                            colorId = 3
+                            Title = "Pro C# 7"
                         });
                 });
 
-            modelBuilder.Entity("newWebAPI.Models.Color", b =>
+            modelBuilder.Entity("newWebAPI.Models.BibliothequeBook", b =>
                 {
-                    b.Property<int>("colorId")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(200)
-                        .HasColumnType("INTEGER");
+                    b.HasOne("newWebAPI.Models.Bibliotheque", "Bibliotheque")
+                        .WithMany("BibliothequeBooks")
+                        .HasForeignKey("BibliothequeId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("color")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT");
+                    b.HasOne("newWebAPI.Models.Book", "Book")
+                        .WithMany("BibliothequeBooks")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("colorId");
+                    b.Navigation("Bibliotheque");
 
-                    b.ToTable("Color");
+                    b.Navigation("Book");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            colorId = 1,
-                            color = "red"
-                        },
-                        new
-                        {
-                            colorId = 2,
-                            color = "blue"
-                        },
-                        new
-                        {
-                            colorId = 3,
-                            color = "green"
-                        });
+            modelBuilder.Entity("newWebAPI.Models.Bibliotheque", b =>
+                {
+                    b.Navigation("BibliothequeBooks");
                 });
 
             modelBuilder.Entity("newWebAPI.Models.Book", b =>
                 {
-                    b.HasOne("newWebAPI.Models.Color", "Color")
-                        .WithMany("Books")
-                        .HasForeignKey("colorId");
-
-                    b.Navigation("Color");
-                });
-
-            modelBuilder.Entity("newWebAPI.Models.Color", b =>
-                {
-                    b.Navigation("Books");
+                    b.Navigation("BibliothequeBooks");
                 });
 #pragma warning restore 612, 618
         }

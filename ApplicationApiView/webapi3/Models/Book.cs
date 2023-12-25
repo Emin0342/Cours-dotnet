@@ -51,4 +51,10 @@ public class Book
     public string? Description { get; set; }
 
     public string? Remarks { get; set; }
-}
+
+    public int? colorId { get; set; } // ici on a un champs qui sert a faire la liaison avec le model Color
+
+    [ForeignKey("colorId")] // ici on a un attribut qui sert a faire la liaison avec le model Color
+    public Color Color { get; set; } // ici on a un attribut qui sert a faire la liaison avec le model Color
+
+    }

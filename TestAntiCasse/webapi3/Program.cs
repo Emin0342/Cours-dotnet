@@ -5,6 +5,7 @@ using System;
 using System.Reflection;
 namespace webapi;
 using AutoMapper;
+using BooksAPI.Models;
 
 public class Program
 {
@@ -58,9 +59,6 @@ public class Program
 
 public class MappingProfile : Profile { // on crée une classe MappingProfile qui hérite de Profile
      public MappingProfile() { // on crée un constructeur
-        CreateMap<Book, BookUpdateDTO>(); // ici on map les champs de la table Book avec les champs du DTO
-        CreateMap<Book, BookColorDTO>(); // ici on map les champs de la table Book avec les champs du DTO
-        CreateMap<Color, ColorDTO>(); // Ajoutez cette ligne
-
+         CreateMap<Book, BookUpdateDTO>(); // ici on map les champs de la table Book avec les champs du DTO
      }
  }
