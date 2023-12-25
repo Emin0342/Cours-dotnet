@@ -28,37 +28,53 @@ public class BookController : ControllerBase
     [ProducesResponseType(201, Type = typeof(Book))] // ici on definit le type de donné que l'on veut
     [ProducesResponseType(400)]
     
-    public async Task<IEnumerable<Book>> Get()  // ici on met en paramètre IEnumerable<Book> pour avoir toutes les données
+    public async Task<IActionResult> GetBooks()
     {
-        return await _context.Books.ToListAsync(); // retourne toutes les données
+        var books = await _context.Books.Include(b => b.Color).ToListAsync(); // ici on a une variable qui sert a recuperer toutes les données de la table Book
+
+        if (books == null || books.Count == 0) // si il n'y a aucun livre
+        {
+            return NotFound(); // on retourne une érreur
+        }
+
+        var bookNewDTOs = _mapper.Map<IEnumerable<BookNewDTO>>(books); // on utilise automapper pour faire le lien entre book et bookNewDTO
+
+        return Ok(bookNewDTOs); // sinon on retourne tous les livres
     }
+
 
 
     // le get (le R(read) du CRUD qui sert a afficher les données selon l'id 
     // on definir l'id et on a toutes les donnés que de cet id la
     [HttpGet("{id}")]
+    public async Task<IActionResult> GetBook(int id)
+{
+    var book = await _context.Books.Include(b => b.Color).FirstOrDefaultAsync(b => b.Id == id);
 
-    public async Task<ActionResult<Book>> Get(int id) // ici on met en paramètre int id pour que l'utilisateur donne l'id pour -->
+    if (book == null)
     {
-        var book = await _context.Books.FindAsync(id); // --> avoir toutes les données de cet id la
+        return NotFound();
+    }
 
-        if (book == null) // si il n'y a aucun livre
-        {
-            return NotFound(); // on retourne une érreur
-        }
+    var bookNewDTO = _mapper.Map<BookNewDTO>(book);
 
-        return book; // sinnon on retourne le livre en question
+    return Ok(bookNewDTO);
+
     }
 
     [EnableCors("_myAllowSpecificOrigins")]
     [HttpPost] // le post (le c(create) du CRUD qui sert a inserere un nouveaux champ 
 
-    public async Task Post([FromBody]Book book)
+    public async Task<ActionResult<Book>> PostBook(BookColorPostDTO bookColorPostDto)
     {
-    
-        _context.Books.Add(book); // ici demande a l'utilisateur de remplir les champs
-        await _context.SaveChangesAsync(); // et on insert le champs
+        var book = _mapper.Map<Book>(bookColorPostDto);
+
+        _context.Books.Add(book);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction("GetBook", new { id = book.Id }, book);
     }
+  
 
     [HttpPut("{id}")] // le put (le U(update) du CRUD qui sert a mettre a jour un champ deja existant
     public async Task<ActionResult> PutBook(int id, [FromBody] Book book) // ici on a en parametre int id pour que l'utilisateur indique selon quel id il faut faire la mise a jour de champs

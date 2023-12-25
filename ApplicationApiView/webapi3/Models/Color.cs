@@ -30,7 +30,6 @@ public class Color
     [MaxLength(200)]
     public int colorId { get; set; }
 
-    [Required (ErrorMessage = "La couleur est un champs obligatoire !")]
     [MaxLength(200)]
 
     public string? color { get; set; }
