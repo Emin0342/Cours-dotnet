@@ -109,5 +109,6 @@ namespace newWebAPI.Models
         }
 
         public DbSet<Book> Books { get; set; } = default!;
+        public DbSet<Color> Color { get; set; } = default!;
     }
 }

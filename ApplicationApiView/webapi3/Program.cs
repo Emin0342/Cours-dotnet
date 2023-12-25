@@ -57,10 +57,12 @@ public class Program
 
 
 public class MappingProfile : Profile { // on crée une classe MappingProfile qui hérite de Profile
-     public MappingProfile() { // on crée un constructeur
+     public MappingProfile() 
+     { // on crée un constructeur
         CreateMap<Book, BookUpdateDTO>(); // ici on map les champs de la table Book avec les champs du DTO
-        CreateMap<Book, BookColorDTO>(); // ici on map les champs de la table Book avec les champs du DTO
-        CreateMap<Color, ColorDTO>(); // Ajoutez cette ligne
-
-     }
+        CreateMap<Color, BookColorDTO>(); // ici on map les champs de la table Book avec les champs du DTO
+        CreateMap<Book, BookColorDTO>() // ici on map les champs de la table Book avec les champs du DTO
+            .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color.color)); // ceci est une fonction qui sert a faire le lien entre les deux tables
+        CreateMap<Color, ColorDTO>();
+    }
  }
